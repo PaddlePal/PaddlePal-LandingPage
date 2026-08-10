@@ -27,6 +27,15 @@ export function PreOrder() {
     setStatus('submitting');
 
     try {
+      // Netlify forms are handled by Netlify edge servers when deployed live.
+      // On localhost, simulate a successful submission so local testing works.
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        await new Promise((resolve) => setTimeout(resolve, 600));
+        setStatus('success');
+        setEmail('');
+        return;
+      }
+
       // Netlify's form handler intercepts POSTs to any path on the site; "/"
       // is the convention. The SPA redirect in netlify.toml does not apply to
       // these because the form handler runs first.
