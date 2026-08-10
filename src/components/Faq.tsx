@@ -1,7 +1,9 @@
+import { Reveal } from './Reveal';
+
 const FAQS = [
   {
     q: 'When does it ship?',
-    a: 'We are finishing hardware validation now and expect to open the first production run soon. Everyone on the pre-order list gets the ship date and pricing before it goes public — and first claim on that run.',
+    a: 'The paddle is a shelf-ready product and we expect to open the first production run soon. Everyone on the pre-order list gets the ship date and pricing before it goes public — and first claim on that run.',
   },
   {
     q: 'What does it cost?',
@@ -13,7 +15,7 @@ const FAQS = [
   },
   {
     q: 'How long does the battery last?',
-    a: 'The paddle is rechargeable and targets multiple sessions per charge, with sensors sleeping between rallies. Final numbers will come from validation testing, and we would rather publish a measured figure than a marketing one.',
+    a: 'The paddle battery is rechargeable and targets multiple sessions per charge, with sensors sleeping between rallies. Final numbers will come from validation testing, and we would rather publish a measured figure than a marketing one.',
   },
   {
     q: 'Does the electronics change how it plays?',
@@ -31,39 +33,38 @@ const FAQS = [
 
 export function Faq() {
   return (
-    <section className="section section--alt" id="faq">
+    <section className="section" id="faq">
       <div className="container container--narrow">
-        <header className="section__head">
+        <Reveal as="header" className="section__head" stagger>
           <span className="label-caps text-lime">FAQ</span>
           <h2 className="headline-lg">Questions, answered straight.</h2>
-        </header>
+        </Reveal>
 
-        <div className="faq">
+        <Reveal className="faq" stagger>
           {FAQS.map((item) => (
             <details className="faq__item" key={item.q}>
               <summary className="faq__q">
                 <span>{item.q}</span>
-                <svg
-                  className="faq__chevron"
-                  viewBox="0 0 24 24"
-                  width="20"
-                  height="20"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M6 9l6 6 6-6"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <span className="faq__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18">
+                    <path
+                      d="M12 5v14M5 12h14"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.2"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </span>
               </summary>
-              <p className="body-md text-muted faq__a">{item.a}</p>
+              {/* Wrapper exists so the answer can animate its height via
+                  grid-template-rows without fighting <details>' own layout. */}
+              <div className="faq__panel">
+                <p className="body-md text-muted faq__a">{item.a}</p>
+              </div>
             </details>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );
