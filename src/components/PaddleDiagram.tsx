@@ -15,10 +15,10 @@ import { useReducedMotion } from '../hooks/useReducedMotion';
  * (drive/drop/dink/overhead/rally) — Z1 and Z4 mirror the classifier's own
  * zone gates (zone 1 → drive, zones 3/4 → overhead).
  */
-const Z1 = { id: 'z1', name: 'Sweet spot', short: 'Z1', speed: '48', shot: 'Drive' } as const;
-const Z2 = { id: 'z2', name: 'Near handle', short: 'Z2', speed: '41', shot: 'Drop' } as const;
-const Z3 = { id: 'z3', name: 'Left edge', short: 'Z3', speed: '33', shot: 'Dink' } as const;
-const Z4 = { id: 'z4', name: 'Right edge', short: 'Z4', speed: '52', shot: 'Overhead' } as const;
+const Z1 = { id: 'z1', name: 'Sweet spot', short: 'Z1', force: 'Super', shot: 'Drive' } as const;
+const Z2 = { id: 'z2', name: 'Near handle', short: 'Z2', force: 'Medium', shot: 'Drop' } as const;
+const Z3 = { id: 'z3', name: 'Left edge', short: 'Z3', force: 'Low', shot: 'Dink' } as const;
+const Z4 = { id: 'z4', name: 'Right edge', short: 'Z4', force: 'High', shot: 'Overhead' } as const;
 
 const ZONES = [Z1, Z2, Z3, Z4] as const;
 
@@ -231,11 +231,8 @@ export function PaddleDiagram() {
             </dd>
           </div>
           <div>
-            <dt className="label-caps text-muted">Swing</dt>
-            <dd className="data-display">
-              {zone.speed}
-              <span className="paddle__metric-unit">mph</span>
-            </dd>
+            <dt className="label-caps text-muted">Force</dt>
+            <dd className="data-display">{zone.force}</dd>
           </div>
           <div>
             <dt className="label-caps text-muted">Shot</dt>
