@@ -5,10 +5,22 @@ interface ImageSlotProps {
   src: string;
   /** Alt text used once the real image exists. */
   alt: string;
-  /** CSS aspect-ratio, e.g. "4 / 3" or "9 / 19.5". */
-  aspect: string;
+  /** Intrinsic pixel width of `src` — reserves space so nothing shifts (CLS). */
+  width: number;
+  /** Intrinsic pixel height of `src`. */
+  height: number;
+  /**
+   * Optional modern-format srcset, e.g.
+   * `{ type: 'image/webp', srcSet: '/x@585.webp 585w, /x.webp 780w' }`.
+   * Browsers that don't support the type fall through to `src`.
+   */
+  source?: { type: string; srcSet: string };
+  /** `sizes` hint for the responsive srcset. Ignored when `source` is absent. */
+  sizes?: string;
   /** Short hint shown in the placeholder while the file is missing. */
   hint?: string;
+  /** `eager` for anything above the fold. */
+  loading?: 'lazy' | 'eager';
   className?: string;
 }
 
@@ -20,14 +32,24 @@ interface ImageSlotProps {
  * Placeholders are visible in production by design: a silently-broken image is
  * worse than an obvious "asset pending" box.
  */
-export function ImageSlot({ src, alt, aspect, hint, className }: ImageSlotProps) {
+export function ImageSlot({
+  src,
+  alt,
+  width,
+  height,
+  source,
+  sizes,
+  hint,
+  loading = 'lazy',
+  className,
+}: ImageSlotProps) {
   const [failed, setFailed] = useState(false);
 
   if (failed) {
     return (
       <div
         className={`image-slot image-slot--empty ${className ?? ''}`}
-        style={{ aspectRatio: aspect }}
+        style={{ aspectRatio: `${width} / ${height}` }}
         role="img"
         aria-label={alt}
       >
@@ -40,15 +62,26 @@ export function ImageSlot({ src, alt, aspect, hint, className }: ImageSlotProps)
     );
   }
 
-  return (
+  const img = (
     <img
       className={`image-slot ${className ?? ''}`}
-      style={{ aspectRatio: aspect }}
       src={src}
       alt={alt}
-      loading="lazy"
+      width={width}
+      height={height}
+      sizes={source ? sizes : undefined}
+      loading={loading}
       decoding="async"
       onError={() => setFailed(true)}
     />
+  );
+
+  if (!source) return img;
+
+  return (
+    <picture>
+      <source type={source.type} srcSet={source.srcSet} sizes={sizes} />
+      {img}
+    </picture>
   );
 }
