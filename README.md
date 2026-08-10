@@ -132,7 +132,7 @@ src/
   components/
     Nav.tsx                 Sticky header
     Hero.tsx                Headline, CTA, stat row
-    PaddleDiagram.tsx       SVG paddle with 5 impact zones
+    PaddleDiagram.tsx       SVG paddle with 4 impact zones
     Features.tsx            6 feature cards
     HowItWorks.tsx          3-step sensor → BLE → app explainer
     AppPreview.tsx          Phone-framed screenshots

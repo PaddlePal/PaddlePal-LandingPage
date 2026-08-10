@@ -1,7 +1,7 @@
 import { PaddleDiagram } from './PaddleDiagram';
 
 const STATS = [
-  { value: '5', label: 'Impact zones' },
+  { value: '4', label: 'Impact zones' },
   { value: '100Hz', label: 'Motion sampling' },
   { value: 'BLE', label: 'Wireless to phone' },
 ];

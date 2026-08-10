@@ -1,5 +1,5 @@
 /**
- * Abstract paddle face with the five FSR impact zones the firmware reports.
+ * Abstract paddle face with the four FSR impact zones the firmware reports.
  * Pure SVG so it stays crisp and needs no art assets. Zone 1 (the sweet spot)
  * pulses to hint at live feedback.
  */
@@ -9,7 +9,7 @@ export function PaddleDiagram() {
       className="paddle-svg"
       viewBox="0 0 260 380"
       role="img"
-      aria-label="Paddle face showing five sensor impact zones, with the centre sweet spot highlighted"
+      aria-label="Paddle face showing four sensor impact zones, with the centre sweet spot highlighted"
     >
       <defs>
         <linearGradient id="pp-face" x1="0" y1="0" x2="0" y2="1">

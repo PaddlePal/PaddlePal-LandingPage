@@ -17,7 +17,7 @@ const stroke = {
 const FEATURES: Feature[] = [
   {
     title: 'Find your sweet spot',
-    body: 'Pressure sensors across the paddle face map every contact to one of five zones. See a heatmap of where you actually make contact — not where you think you do.',
+    body: 'Pressure sensors across the paddle face map every contact to one of four zones. See a heatmap of where you actually make contact — not where you think you do.',
     icon: (
       <svg viewBox="0 0 24 24" {...stroke}>
         <circle cx="12" cy="12" r="9" />
