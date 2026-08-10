@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#020617" />
+
+    <title>PaddlePal — The smart pickleball paddle</title>
+    <meta
+      name="description"
+      content="PaddlePal is a smart pickleball paddle with embedded sensors. See exactly where you hit, how fast you swing, and how your game is trending — live on your phone."
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="PaddlePal — The smart pickleball paddle" />
+    <meta
+      property="og:description"
+      content="Impact location, swing speed, and shot type — straight from the paddle to your phone."
+    />
+    <meta property="og:image" content="/images/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--
+      Netlify Forms detection.
+
+      Netlify's build bot scans the DEPLOYED HTML for forms with the `netlify`
+      attribute. A React-rendered form is invisible to it, so this static copy
+      must exist in index.html. It is hidden from users and screen readers; the
+      real UI lives in src/components/PreOrder.tsx, which POSTs to "/" with a
+      matching `form-name` field.
+
+      If you add or rename a field in PreOrder.tsx, mirror it here or Netlify
+      will silently drop that field from submissions.
+    -->
+    <form name="preorder" netlify netlify-honeypot="bot-field" hidden>
+      <input type="email" name="email" />
+      <input type="text" name="bot-field" />
+    </form>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
